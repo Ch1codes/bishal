@@ -1,169 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Herna Jaam</title>
+
+  <!-- External Stylesheets -->
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <!-- Scripts -->
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script src="script1.js" defer></script>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
-  <style>
+
+  <!-- <style>
+    /* General Styles */
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5dc; /* Cream background */
+      color: #5a3224; /* Bright brown text color */
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
-      background: #f4f4f4;
+      min-height: 100vh;
     }
 
     .container {
-      width: 100%;
       max-width: 800px;
-      margin: 0 auto;
+      width: 90%;
+      background: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* Header Styles */
+    .header {
+      background: #a0522d; /* Bright brown accent */
+      color: white;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .sos-button {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    /* Main Content Styles */
+    main {
       padding: 20px;
     }
 
     .section {
-      margin: 20px 0;
-    }
-
-    #calendar {
-      text-align: center;
-    }
-    #map {
-  position: absolute;
-  bottom: 100px; /* Distance from the bottom of the page */
-  left: 50%; /* Center it horizontally */
-  transform: translateX(-50%); /* Adjust the map's position to be perfectly centered horizontally */
-  width: 500px;  /* Adjust width as needed */
-  height: 200px;  /* Adjust height as needed */
-}
-
-    iframe {
-      border: none;
-      max-width: 100%; /* Make iframe responsive */
-      margin: 0 auto;
+      margin-bottom: 20px;
     }
 
     .section-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
+      font-size: 1.5rem;
       text-align: center;
+      color: white;
+      margin: 0;
+      padding: 10px;
+      background: #ff8c42; /* Bright orange for Calendar and Map section titles */
+      border-radius: 8px;
     }
 
     .component-box {
       text-align: center;
+      margin: 10px 0;
     }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* Map Styles */
+    #map {
+      width: 100%;
+      height: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-top: 10px;
+      background: #f5f5dc; /* Cream background fallback */
+    }
+
     .leaflet-container {
-            width: 50%;
-            position: relative;
-            left: 600px;
-        }
-  </style>
+      width: 100%;
+      height: 250%;
+      border-radius: 8px;
+    }
 
+    /* Footer Styles */
+    .footer {
+      background: #a0522d; /* Bright brown accent */
+      text-align: center;
+      padding: 10px;
+    }
 
+    .ar-button {
+      background: #ff8c42;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .ar-button:hover {
+      background: #d1783b;
+    }
+  </style> -->
 </head>
+
 <body>
   <div class="container">
     <!-- Header -->
     <header class="header">
       <span class="logo">HERNA JAAM!</span>
-      <a href="help.html"> <button class="sos-button">SOS</button></a>
+      <a href="help.html"><button class="sos-button">SOS</button></a>
     </header>
-    
+
     <!-- Main Content -->
     <main>
-     
+      <!-- Calendar Section -->
+      <section class="section">
         <h2 class="section-title">Calendar</h2>
-        <section class="section"><div id="calendar" class="component-box">
-        <iframe src="https://calendar.google.com/calendar/embed?height=300&wkst=1&ctz=Asia%2FKathmandu&showPrint=0&showTitle=0&showTabs=0&showCalendars=0&showTz=0&src=MGJmZWNjZTg2ZmE0NWNhOWRmYTg2YWIzZmQ3MjU1ZTBjNDM0NDM1YWJlZDZmZjQ1MzhkMzQxYzEyMjlkYTg0Y0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%238E24AA" style="border-width:0" width="400" height="300" frameborder="0" scrolling="no"></iframe>
-      </div></section>
-      
+        <div id="calendar" class="component-box">
+          <iframe src="https://calendar.google.com/calendar/embed?height=300&wkst=1&ctz=Asia%2FKathmandu&showPrint=0&showTitle=0&showTabs=0&showCalendars=0&showTz=0&src=MGJmZWNjZTg2ZmE0NWNhOWRmYTg2YWIzZmQ3MjU1ZTBjNDM0NDM1YWJlZDZmZjQ1MzhkMzQxYzEyMjlkYTg0Y0Bncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%238E24AA" frameborder="0" scrolling="no"></iframe>
+        </div>
+      </section>
+
+      <!-- Map Section -->
       <section class="section">
         <h2 class="section-title">Map</h2>
-        <div id="map" class="component-box"></div>  <!-- Include Leaflet.js -->
+        <div id="map" class="component-box"></div>
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-          
         <script>
-            // Sample event data
-            const events = [
-                { latitude: 27.67088, longitude: 85.43969, title: "Hack the cricle finals" },
-                { latitude: 27.6744, longitude: 85.3378, title: "Event 2 in Kathmandu" },
-                { latitude: 27.7036, longitude: 85.2800, title: "Event 3 in Kathmandu" }
-            ];
-      
-            // Function to handle event selection
-            function handleEventSelect(event) {
-                const eventList = document.getElementById('event-list');
-                const eventItem = document.createElement('li');
-                eventItem.classList.add('event-item');
-                eventItem.textContent = `Title: ${event.title}, Coordinates: ${event.latitude}, ${event.longitude}`;
-                eventList.innerHTML = ''; // Clear the previous details
-                eventList.appendChild(eventItem);
+          const events = [
+            { latitude: 27.67088, longitude: 85.43969, title: "Hack the Circle Finals" },
+            { latitude: 27.6710406, longitude: 85.4390523, title: "Event 2 in Kathmandu" },
+            { latitude: 27.6713345, longitude:85.4391121, title: "Event 3 in Kathmandu" }
+          ];
+
+          function handleEventSelect(event) {
+            console.log(`Selected: ${event.title}`);
+          }
+
+          class EventMap {
+            constructor(events, onEventSelect) {
+              this.events = events;
+              this.onEventSelect = onEventSelect;
+              this.map = null;
             }
-      
-            // EventMap class (code provided in the previous answer)
-            class EventMap {
-                constructor(events, onEventSelect) {
-                    this.events = events;
-                    this.onEventSelect = onEventSelect;
-                    this.map = null;
-                    this.markers = [];
-                }
-      
-                initialize() {
-                    // Initialize the map, centered on Kathmandu, Nepal
-                    this.map = L.map('map').setView([27.67088, 85.43969], 30); // Coordinates for Kathmandu, Nepal
-      
-                    // Add OpenStreetMap tile layer
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="https://route-init.gallimap.com/api/v1/reverse/generalReverse?accessToken=805e896e-209f-44a2-8a1d-28e8847dcdf4&lat=[LOCATION-LATITUDE]&lng=[LOCATION-LONGITUDE]">OpenStreetMap</a> contributors'
-                    }).addTo(this.map);
-      
-                    // Add markers for the events
-                    this.addMarkers();
-                }
-      
-                addMarkers() {
-                    this.events.forEach(event => {
-                        const { latitude, longitude, title } = event;
-      
-                        const marker = L.marker([latitude, longitude])
-                            .addTo(this.map)
-                            .bindPopup(title);
-      
-                        // Attach a click event to each marker to trigger onEventSelect
-                        marker.on('click', () => {
-                            this.onEventSelect(event); // Trigger the event selection callback
-                        });
-      
-                        this.markers.push(marker); // Save the marker for later manipulation
-                    });
-                }
+
+            initialize() {
+              this.map = L.map('map').setView([27.67088, 85.43969], 20);
+              L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(this.map);
+              this.events.forEach(event => {
+                const marker = L.marker([event.latitude, event.longitude]).addTo(this.map).bindPopup(event.title);
+                marker.on('click', () => this.onEventSelect(event));
+              });
             }
-      
-            // Initialize and create a new EventMap instance
-            const eventMap = new EventMap(events, handleEventSelect);
-            eventMap.initialize();
-      
-            // Initialize the calendar (Example using calendar.js or your own calendar implementation)
-            const ca =  new calendar('calendar');
-            ca.render();
+          }
+
+          const eventMap = new EventMap(events, handleEventSelect);
+          eventMap.initialize();
         </script>
-      
       </section>
     </main>
 
     <!-- Footer -->
     <footer class="footer">
-      <a href="ar.html">
-        <button class="ar-button">AR</button>
-      </a>
+      <a href="ar.html"><button class="ar-button">AR</button></a>
     </footer>
   </div>
 </body>
+
 </html>
