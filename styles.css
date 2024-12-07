@@ -82,7 +82,7 @@ main {
 .component-box {
   text-align: center;
   bottom: auto;
-  margin: 100Spx 0;
+  margin: 10px 0;
   background: #eaeaea;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -124,7 +124,7 @@ iframe {
   background: #5f2704; /* Bright orange */
   color: white;
   border: none;
-  padding: 8px 20px;
+  padding: 8px 30px;
   border-radius: 30px;
   cursor: pointer;
   font-size: 1rem;
