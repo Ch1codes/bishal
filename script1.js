@@ -13,6 +13,41 @@ document.addEventListener('DOMContentLoaded', () => {
   sosButton.addEventListener('click', (e) => {
     e.preventDefault(); // Prevent default behavior of the button
 
+    // Check geolocation permissions
+    navigator.permissions
+      .query({ name: 'geolocation' })
+      .then((permissionStatus) => {
+        console.log('Geolocation permission state:', permissionStatus.state);
+
+        if (permissionStatus.state === 'granted') {
+          // Permission already granted, proceed to get location
+          getLocationAndSendEmail();
+        } else if (permissionStatus.state === 'prompt') {
+          // Ask for permission
+          alert('Please allow location access when prompted.');
+          getLocationAndSendEmail();
+        } else if (permissionStatus.state === 'denied') {
+          // Permission denied
+          alert(
+            'Location access is denied. Please enable location access in your browser settings and try again.'
+          );
+          // Redirect to help page
+          window.location.href = 'help.html';
+        }
+
+        // Listen for permission state changes (optional)
+        permissionStatus.onchange = () => {
+          console.log('Permission status changed to:', permissionStatus.state);
+        };
+      })
+      .catch((error) => {
+        console.error('Error checking geolocation permissions:', error);
+        alert('Failed to check geolocation permissions. Redirecting to the help page.');
+        window.location.href = 'help.html';
+      });
+  });
+
+  function getLocationAndSendEmail() {
     // Access device location
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -52,5 +87,5 @@ document.addEventListener('DOMContentLoaded', () => {
       // Redirect to help.html if geolocation is unavailable
       window.location.href = 'help.html';
     }
-  });
+  }
 });
