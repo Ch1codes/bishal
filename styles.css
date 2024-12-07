@@ -5,7 +5,7 @@ body, html {
   font-family: Arial, sans-serif;
   box-sizing: border-box;
   background: #f5f5dc; /* Cream background */
-  color: #5a3224; /* Bright brown text color */
+  color: #ff8c42; /* Bright brown text color */
 }
 
 /* General Styles */
@@ -34,7 +34,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #a0522d; /* Bright brown accent */
+  background: #ff8c42; /* Bright brown accent */
   color: white;
   padding: 10px 20px;
   font-size: 1.5rem;
@@ -117,11 +117,11 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background: #a0522d; /* Bright brown accent */
+  background: #ff8c42; /* Bright brown accent */
 }
 
 .ar-button {
-  background: #ff8c42; /* Bright orange */
+  background: #5f2704; /* Bright orange */
   color: white;
   border: none;
   padding: 8px 20px;
@@ -132,6 +132,19 @@ iframe {
 
 .ar-button:hover {
   background: #d1783b;
+}
+.details-button{
+  background: #5f2704; /* Bright orange */
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.details-button:hover {
+  background: #d1783b;
+
 }
 
 /* Responsive Design */
@@ -184,5 +197,9 @@ iframe {
   .ar-button {
       font-size: 0.8rem;
       padding: 5px 10px;
+  }
+  .details-button {
+    font-size: 0.8rem;
+    padding: 5px 10px;
   }
 }
